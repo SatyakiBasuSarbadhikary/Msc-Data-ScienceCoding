@@ -62,27 +62,3 @@ Multiprocessing involves the execution of multiple processes simultaneously, whe
 In the code snippets above we are performing iterations 999999 to perform a calculation(x=5**999) using multithreading and multiprocessing.We used two threads for multithreading and the time taken for the calculatiojn is 4.79 s while for multiprocessing time taken was 4.59 s.Since the task here is computational intensive and is beneficial from parallel execution across multiple cores multiprocessing seems better
 """
 
-import subprocess
-
-def add_numbers(num1, num2):
-    # Construct the curl command to execute the API
-    curl_command = f'curl -X POST -H "Content-Type: application/json" -d \'{{"number1": {num1}, "number2": {num2}}}\'' \
-                   ' https://api.example.com/add'
-
-    # Execute the curl command using subprocess
-    result = subprocess.run(curl_command, shell=True, capture_output=True, text=True)
-
-    # Check if the API call was successful
-    if result.returncode == 0:
-        # Extract the result from the API response
-        response = result.stdout.strip()
-        return int(response)
-    else:
-        # Handle API call failure
-        print(f'API call failed with error: {result.stderr}')
-        return None
-
-# Test the add_numbers function
-result = add_numbers(5, 3)
-if result is not None:
-    print(f'The sum of 5 and 3 is: {result}')
